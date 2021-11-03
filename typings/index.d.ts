@@ -1,7 +1,7 @@
 import { FilterOptions } from './instances'
 import { relatedVideo } from 'ytdl-core'
 
-export function suggestons (
+export function suggestions (
   YTQuery: String,
   Limit?: String | Number | undefined,
   Filter?: FilterOptions

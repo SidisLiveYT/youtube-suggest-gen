@@ -1,6 +1,6 @@
 const { search } = require('play-dl');
 const { randomOne } = require('proxies-generator');
-const { getBasicInfo } = require('ytdl-core');
+const { getBasicInfo, relatedVideo } = require('ytdl-core');
 const HttpsProxyAgent = require('https-proxy-agent');
 
 /**
@@ -28,10 +28,10 @@ class SuggestionGen {
 
   /**
    * @method YTSuggestions() -> Fetch Suggestions from Youtube Filtered with Options
-   * @param {String} YTQuery Youtube Video URL or Search Query
+   * @param {String} YTQuery Youtube Video URL or Search Query | if 'all' , then it will return everything
    * @param {Number|String|undefined} Limit Limit the Return Array Values
    * @param {DefaultFilterOptions<Object>|undefined} Filter Filter Options for randomness , proxy vlaues or cookies in search
-   * @returns
+   * @returns {Promise<relatedVideo[]>|undefined} Returns Array of Suggestions from ytdl-core . or else returns undefined for errors
    */
   static async YTSuggestions(
     YTQuery,
@@ -64,7 +64,8 @@ class SuggestionGen {
       if (!RelatedVideos || (RelatedVideos && !RelatedVideos[0])) return void null;
       const VideosCache = [];
       let RandomIndex = 0;
-      for (let count = 0, len = RelatedVideos.length; len < count; ++count) {
+      Limit = Limit === 'all' ? RelatedVideos.length : Limit;
+      for (let count = 0, len = RelatedVideos.length; count < len; ++count) {
         if (Number(Limit) <= VideosCache.length) break;
         else if (Filter.random) {
           RandomIndex = Math.floor(Math.random() * (RelatedVideos.length - 1));
