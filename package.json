@@ -1,6 +1,6 @@
 {
   "name": "youtube-suggest-gen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fetch Youtube Video Suggestions with the help of Query or URLs",
   "main": "./src/index.js",
   "module": "./src/index.mjs",
@@ -45,7 +45,7 @@
   "dependencies": {
     "https-proxy-agent": "^5.0.0",
     "play-dl": "^1.6.2",
-    "proxies-generator": "^1.0.5",
+    "proxies-generator": "^1.0.6",
     "ytdl-core": "^4.9.2"
   },
   "directories": {
