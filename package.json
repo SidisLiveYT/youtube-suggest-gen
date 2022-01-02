@@ -1,6 +1,6 @@
 {
   "name": "youtube-suggest-gen",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Fetch Youtube Video Suggestions with the help of Query or URLs",
   "main": "./src/index.js",
   "module": "./src/index.mjs",
