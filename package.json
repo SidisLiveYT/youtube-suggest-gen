@@ -1,6 +1,6 @@
 {
   "name": "youtube-suggest-gen",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fetch Youtube Video Suggestions with the help of Query or URLs",
   "main": "./src/index.js",
   "module": "./src/index.mjs",
@@ -25,11 +25,11 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-env": "^7.16.8",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.5.0",
+    "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.4",
     "nyc": "^15.1.0",
     "semantic-release": "^18.0.1"
   },
@@ -44,9 +44,9 @@
   },
   "dependencies": {
     "https-proxy-agent": "^5.0.0",
-    "play-dl": "^1.6.2",
+    "play-dl": "^1.7.8",
     "proxies-generator": "^1.0.6",
-    "ytdl-core": "^4.9.2"
+    "ytdl-core": "^4.10.0"
   },
   "directories": {
     "example": "example"
