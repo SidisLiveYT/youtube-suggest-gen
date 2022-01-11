@@ -25,7 +25,11 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
+<<<<<<< HEAD
     "@babel/preset-env": "^7.16.8",
+=======
+    "@babel/preset-env": "^7.16.7",
+>>>>>>> e5b44470a240426e62969efcb745474a7cb1140b
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -44,7 +48,11 @@
   },
   "dependencies": {
     "https-proxy-agent": "^5.0.0",
+<<<<<<< HEAD
     "play-dl": "^1.7.8",
+=======
+    "play-dl": "^1.7.0",
+>>>>>>> e5b44470a240426e62969efcb745474a7cb1140b
     "proxies-generator": "^1.0.6",
     "ytdl-core": "^4.10.0"
   },
