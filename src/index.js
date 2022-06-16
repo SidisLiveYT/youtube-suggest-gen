@@ -1,7 +1,7 @@
-const { search } = require("play-dl");
-const { randomOne } = require("proxies-generator");
-const { getBasicInfo, relatedVideo } = require("ytdl-core");
-const HttpsProxyAgent = require("https-proxy-agent");
+const { search } = require('play-dl');
+const { randomOne } = require('proxies-generator');
+const { getBasicInfo, relatedVideo } = require('ytdl-core');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 /**
  * Default Filter Options for Youtube Suggestions
@@ -36,9 +36,9 @@ class SuggestionGen {
   static async YTSuggestions(
     YTQuery,
     Limit = 1,
-    Filter = DefaultFilterOptions
+    Filter = DefaultFilterOptions,
   ) {
-    if (!YTQuery || (YTQuery && typeof YTQuery !== "string")) return void null;
+    if (!YTQuery || (YTQuery && typeof YTQuery !== 'string')) return void null;
     const PlaydlQuery = await search(YTQuery);
     if (!PlaydlQuery || (PlaydlQuery && !PlaydlQuery[0])) return void null;
     try {
@@ -50,22 +50,21 @@ class SuggestionGen {
       const RelatedVideos = (
         await getBasicInfo(PlaydlQuery[0].url, {
           requestOptions:
-            agent ??
-            (SuggestionGen.#YTCookies
+            agent
+            ?? (SuggestionGen.#YTCookies
               ? {
-                  headers: {
-                    cookie: SuggestionGen.#YTCookies,
-                  },
-                }
-              : undefined) ??
-            undefined,
+                headers: {
+                  cookie: SuggestionGen.#YTCookies,
+                },
+              }
+              : undefined)
+            ?? undefined,
         })
       ).related_videos;
-      if (!RelatedVideos || (RelatedVideos && !RelatedVideos[0]))
-        return void null;
+      if (!RelatedVideos || (RelatedVideos && !RelatedVideos[0])) return void null;
       const VideosCache = [];
       let RandomIndex = 0;
-      Limit = Limit === "all" ? RelatedVideos.length : Limit;
+      Limit = Limit === 'all' ? RelatedVideos.length : Limit;
       for (let count = 0, len = RelatedVideos.length; count < len; ++count) {
         if (Number(Limit) <= VideosCache.length) break;
         else if (Filter.random) {
@@ -73,20 +72,17 @@ class SuggestionGen {
           VideosCache.push(RelatedVideos[RandomIndex - 1]);
         } else VideosCache.push(RelatedVideos[count]);
       }
-      return VideosCache?.map((video) => {
-        return {
-          ...video,
-          url: "https://www.youtube.com/watch?v=" + video?.id,
-        };
-      });
+      return VideosCache?.map((video) => ({
+        ...video,
+        url: `https://www.youtube.com/watch?v=${video?.id}`,
+      }));
     } catch (error) {
       if (
         !(
-          (error.message && !error.message.includes("429")) ||
-          `${error}`.includes("429")
+          (error.message && !error.message.includes('429'))
+          || `${error}`.includes('429')
         )
-      )
-        throw error;
+      ) throw error;
       Filter.proxy = await randomOne(true);
       return await SuggestionGen.YTSuggestions(YTQuery, Limit, Filter);
     }
